@@ -12,7 +12,7 @@ table = dynamodb.Table(os.environ["TABLE_NAME"])
 
 bedrock_client = boto3.client("bedrock-runtime", region_name="ap-northeast-1")
 
-MODEL_ID = "anthropic.claude-haiku-4-5-20251001-v1:0"
+MODEL_ID = "jp.anthropic.claude-haiku-4-5-20251001-v1:0"
 
 
 def _get_apigw_client():

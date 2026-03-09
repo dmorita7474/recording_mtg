@@ -17,6 +17,7 @@ export default function MeetingRoom() {
   const [isRecording, setIsRecording] = useState(false);
   const [transcript, setTranscript] = useState<string[]>([]);
   const [interimText, setInterimText] = useState("");
+  const [pendingText, setPendingText] = useState("");
   const [summary, setSummary] = useState("");
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [error, setError] = useState("");
@@ -26,6 +27,7 @@ export default function MeetingRoom() {
   const interimTextRef = useRef("");
   const finalBufferRef = useRef<string[]>([]);
   const flushTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const interimFlushTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const audioContextRef = useRef<AudioContext | null>(null);
   const mediaStreamRef = useRef<MediaStream | null>(null);
 
@@ -33,6 +35,10 @@ export default function MeetingRoom() {
     if (flushTimerRef.current) {
       clearTimeout(flushTimerRef.current);
       flushTimerRef.current = null;
+    }
+    if (interimFlushTimerRef.current) {
+      clearTimeout(interimFlushTimerRef.current);
+      interimFlushTimerRef.current = null;
     }
   }, []);
 
@@ -73,6 +79,7 @@ export default function MeetingRoom() {
       ws.onmessage = (event) => {
         const msg: WsMessage = JSON.parse(event.data);
         if (msg.type === "transcript") {
+          setPendingText("");
           setTranscript((prev) => [...prev, msg.content]);
         } else if (msg.type === "summary") {
           setSummary(msg.content);
@@ -87,22 +94,39 @@ export default function MeetingRoom() {
 
       ws.onopen = async () => {
         // バッファフラッシュ関数
-        const flushBuffer = () => {
+        const flushBuffer = (text?: string) => {
           if (flushTimerRef.current) {
             clearTimeout(flushTimerRef.current);
             flushTimerRef.current = null;
           }
-          const accumulated = finalBufferRef.current.join("");
+          if (interimFlushTimerRef.current) {
+            clearTimeout(interimFlushTimerRef.current);
+            interimFlushTimerRef.current = null;
+          }
+          const pending = text ?? finalBufferRef.current.join("");
           finalBufferRef.current = [];
-          if (accumulated && ws.readyState === WebSocket.OPEN) {
-            ws.send(JSON.stringify({ action: "transcribe", text: accumulated }));
-            ws.send(JSON.stringify({ action: "summarize" }));
+          if (pending && ws.readyState === WebSocket.OPEN) {
+            ws.send(JSON.stringify({ action: "sendMessage", type: "transcribe", text: pending }));
+            ws.send(JSON.stringify({ action: "sendMessage", type: "summarize" }));
           }
         };
 
         const resetFlushTimer = () => {
           if (flushTimerRef.current) clearTimeout(flushTimerRef.current);
           flushTimerRef.current = setTimeout(() => flushBuffer(), 500);
+        };
+
+        // interimテキストが3秒更新されなければ確定扱い
+        const resetInterimFlushTimer = () => {
+          if (interimFlushTimerRef.current) clearTimeout(interimFlushTimerRef.current);
+          interimFlushTimerRef.current = setTimeout(() => {
+            const interim = interimTextRef.current;
+            if (interim) {
+              interimTextRef.current = "";
+              setInterimText("");
+              flushBuffer(interim);
+            }
+          }, 3000);
         };
 
         try {
@@ -169,11 +193,13 @@ export default function MeetingRoom() {
                 if (!result.IsPartial && text) {
                   interimTextRef.current = "";
                   setInterimText("");
+                  setPendingText(text);
                   finalBufferRef.current.push(text);
                   resetFlushTimer();
                 } else if (result.IsPartial && text) {
                   interimTextRef.current = text;
                   setInterimText(text);
+                  resetInterimFlushTimer();
                 }
               }
             }
@@ -192,6 +218,13 @@ export default function MeetingRoom() {
       };
     } catch {
       setError("接続に失敗しました");
+    }
+  }, []);
+
+  const requestSummary = useCallback(() => {
+    const ws = wsRef.current;
+    if (ws && ws.readyState === WebSocket.OPEN) {
+      ws.send(JSON.stringify({ action: "sendMessage", type: "summarize" }));
     }
   }, []);
 
@@ -282,11 +315,28 @@ export default function MeetingRoom() {
           {isRecording ? "録音停止" : "録音開始"}
         </button>
         {isRecording && (
-          <span
-            style={{ marginLeft: "1rem", color: "#d32f2f", fontWeight: "bold" }}
-          >
-            録音中...
-          </span>
+          <>
+            <span
+              style={{ marginLeft: "1rem", color: "#d32f2f", fontWeight: "bold" }}
+            >
+              録音中...
+            </span>
+            <button
+              onClick={requestSummary}
+              style={{
+                marginLeft: "1rem",
+                padding: "0.75rem 1.5rem",
+                backgroundColor: "#388e3c",
+                color: "#fff",
+                border: "none",
+                borderRadius: "4px",
+                fontSize: "1rem",
+                cursor: "pointer",
+              }}
+            >
+              サマリ生成
+            </button>
+          </>
         )}
       </div>
 
@@ -295,7 +345,7 @@ export default function MeetingRoom() {
       )}
 
       <div style={{ display: "flex", gap: "1.5rem" }}>
-        <Transcript lines={transcript} interimText={interimText} />
+        <Transcript lines={transcript} interimText={interimText} pendingText={pendingText} />
         <Summary summary={summary} suggestions={suggestions} />
       </div>
     </div>

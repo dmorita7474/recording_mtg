@@ -1,3 +1,5 @@
+import ReactMarkdown from "react-markdown";
+
 interface SummaryProps {
   summary: string;
   suggestions: string[];
@@ -17,9 +19,13 @@ export default function Summary({ summary, suggestions }: SummaryProps) {
       }}
     >
       <h2 style={{ margin: "0 0 0.75rem", color: "#333" }}>サマリ</h2>
-      <p style={{ lineHeight: 1.6, color: summary ? "#333" : "#999" }}>
-        {summary || "録音を開始するとサマリが表示されます"}
-      </p>
+      {summary ? (
+        <div style={{ lineHeight: 1.6, color: "#333" }}>
+          <ReactMarkdown>{summary}</ReactMarkdown>
+        </div>
+      ) : (
+        <p style={{ color: "#999" }}>録音を開始するとサマリが表示されます</p>
+      )}
 
       <h2 style={{ margin: "1rem 0 0.75rem", color: "#333" }}>次の議論の提案</h2>
       {suggestions.length === 0 ? (

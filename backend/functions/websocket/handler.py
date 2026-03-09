@@ -12,7 +12,7 @@ table = dynamodb.Table(os.environ["TABLE_NAME"])
 
 bedrock_client = boto3.client("bedrock-runtime", region_name="ap-northeast-1")
 
-MODEL_ID = "anthropic.claude-haiku-4-5-20251001-v1:0"
+MODEL_ID = "jp.anthropic.claude-haiku-4-5-20251001-v1:0"
 
 
 def _get_apigw_client():
@@ -84,10 +84,11 @@ def send_message(event: dict, context) -> dict:
     connection_id = event["requestContext"]["connectionId"]
     body = json.loads(event.get("body", "{}"))
     action = body.get("action")
+    msg_type = body.get("type", action)  # typeフィールド優先、なければactionで判定
 
-    logger.info("Message from %s: action=%s", connection_id, action)
+    logger.info("Message from %s: action=%s type=%s", connection_id, action, msg_type)
 
-    if action == "transcribe":
+    if msg_type == "transcribe":
         text = body.get("text", "")
         if not text:
             return {"statusCode": 400, "body": "Missing text"}
@@ -113,7 +114,7 @@ def send_message(event: dict, context) -> dict:
             {"type": "transcript", "content": corrected},
         )
 
-    elif action == "summarize":
+    elif msg_type == "summarize":
         lambda_client = boto3.client("lambda")
         lambda_client.invoke(
             FunctionName=os.environ.get(
