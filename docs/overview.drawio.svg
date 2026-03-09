@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="660" viewBox="0 0 1200 660">
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#555"/>
+    </marker>
+    <marker id="arrBlue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#1565C0"/>
+    </marker>
+    <marker id="arrGreen" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#2E7D32"/>
+    </marker>
+    <marker id="arrOrange" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#E65100"/>
+    </marker>
+    <marker id="arrPurple" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#6A1B9A"/>
+    </marker>
+    <marker id="arrOrangeBack" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#E65100"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="660" fill="#F7F8FA"/>
+
+  <!-- Title -->
+  <text x="600" y="34" text-anchor="middle"
+        font-family="'Segoe UI',Arial,sans-serif" font-size="17" font-weight="bold" fill="#1A1A2E">
+    recording_mtg システム構成図
+  </text>
+
+  <!-- ===== GROUP BACKGROUNDS ===== -->
+
+  <!-- フロントエンド -->
+  <rect x="196" y="62" width="168" height="178" rx="10"
+        fill="#E3F2FD" stroke="#90CAF9" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="280" y="80" text-anchor="middle"
+        font-family="'Segoe UI',Arial,sans-serif" font-size="10" font-weight="bold" fill="#0D47A1">
+    フロントエンド
+  </text>
+
+  <!-- 認証 -->
+  <rect x="196" y="388" width="168" height="178" rx="10"
+        fill="#E8F5E9" stroke="#A5D6A7" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="280" y="406" text-anchor="middle"
+        font-family="'Segoe UI',Arial,sans-serif" font-size="10" font-weight="bold" fill="#1B5E20">
+    認証
+  </text>
+
+  <!-- バックエンド -->
+  <rect x="432" y="158" width="656" height="478" rx="10"
+        fill="#FFF8E1" stroke="#FFD54F" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="456" y="176" text-anchor="start"
+        font-family="'Segoe UI',Arial,sans-serif" font-size="10" font-weight="bold" fill="#E65100">
+    バックエンド
+  </text>
+
+  <!-- ===== SERVICE BOXES ===== -->
+
+  <!-- User Browser -->
+  <rect x="18" y="318" width="124" height="68" rx="8" fill="white" stroke="#546E7A" stroke-width="2"/>
+  <text x="80" y="344" text-anchor="middle"
+        font-family="'Segoe UI',Arial,sans-serif" font-size="12" font-weight="bold" fill="#37474F">
+    ユーザー
+  </text>
+  <text x="80" y="362" text-anchor="middle"
+        font-family="'Segoe UI',Arial,sans-serif" font-size="10" fill="#78909C">
+    Browser
+  </text>
+  <text x="80" y="376" text-anchor="middle"
+        font-family="'Segoe UI',Arial,sans-serif" font-size="10" fill="#78909C">
+    (React + Vite)
+  </text>
+
+  <!-- CloudFront -->
+  <rect x="214" y="90" width="132" height="48" rx="6" fill="white" stroke="#1976D2" stroke-width="1.5"/>
+  <text x="280" y="110" text-anchor="middle"
+        font-family="'Segoe UI',Arial,sans-serif" font-size="11" font-weight="bold" fill="#1976D2">
+    CloudFront
+  </text>
+  <text x="280" y="127" text-anchor="middle"
+        font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#78909C">
+    CDN / HTTPS配信
+  </text>
+
+  <!-- S3 -->
+  <rect x="214" y="182" width="132" height="48" rx="6" fill="white" stroke="#1976D2" stroke-width="1.5"/>
+  <text x="280" y="202" text-anchor="middle"
+        font-family="'Segoe UI',Arial,sans-serif" font-size="11" font-weight="bold" fill="#1976D2">
+    S3
+  </text>
+  <text x="280" y="219" text-anchor="middle"
+        font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#78909C">
+    静的ファイル配信
+  </text>
+
+  <!-- Cognito User Pool -->
+  <rect x="214" y="416" width="132" height="48" rx="6" fill="white" stroke="#388E3C" stroke-width="1.5"/>
+  <text x="280" y="436" text-anchor="middle"
+        font-family="'Segoe UI',Arial,sans-serif" font-size="11" font-weight="bold" fill="#388E3C">
+    Cognito
+  </text>
+  <text x="280" y="453" text-anchor="middle"
+        font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#78909C">
+    User Pool (認証)
+  </text>
+
+  <!-- Cognito Identity Pool -->
+  <rect x="214" y="504" width="132" height="48" rx="6" fill="white" stroke="#388E3C" stroke-width="1.5"/>
+  <text x="280" y="524" text-anchor="middle"
+        font-family="'Segoe UI',Arial,sans-serif" font-size="11" font-weight="bold" fill="#388E3C">
+    Cognito
+  </text>
+  <text x="280" y="541" text-anchor="middle"
+        font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#78909C">
+    Identity Pool + STS
+  </text>
+
+  <!-- Amazon Transcribe -->
+  <rect x="452" y="82" width="148" height="48" rx="6" fill="white" stroke="#6A1B9A" stroke-width="1.5"/>
+  <text x="526" y="102" text-anchor="middle"
+        font-family="'Segoe UI',Arial,sans-serif" font-size="11" font-weight="bold" fill="#6A1B9A">
+    Transcribe
+  </text>
+  <text x="526" y="119" text-anchor="middle"
+        font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#78909C">
+    Streaming / ja-JP
+  </text>
+
+  <!-- API Gateway WebSocket -->
+  <rect x="452" y="328" width="148" height="48" rx="6" fill="white" stroke="#E65100" stroke-width="1.5"/>
+  <text x="526" y="348" text-anchor="middle"
+        font-family="'Segoe UI',Arial,sans-serif" font-size="11" font-weight="bold" fill="#E65100">
+    API Gateway
+  </text>
+  <text x="526" y="365" text-anchor="middle"
+        font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#78909C">
+    WebSocket v2
+  </text>
+
+  <!-- Lambda websocket -->
+  <rect x="688" y="228" width="154" height="48" rx="6" fill="white" stroke="#F57C00" stroke-width="1.5"/>
+  <text x="765" y="248" text-anchor="middle"
+        font-family="'Segoe UI',Arial,sans-serif" font-size="11" font-weight="bold" fill="#F57C00">
+    Lambda
+  </text>
+  <text x="765" y="265" text-anchor="middle"
+        font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#78909C">
+    websocket (補正・保存)
+  </text>
+
+  <!-- Lambda summarize -->
+  <rect x="688" y="468" width="154" height="48" rx="6" fill="white" stroke="#F57C00" stroke-width="1.5"/>
+  <text x="765" y="488" text-anchor="middle"
+        font-family="'Segoe UI',Arial,sans-serif" font-size="11" font-weight="bold" fill="#F57C00">
+    Lambda
+  </text>
+  <text x="765" y="505" text-anchor="middle"
+        font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#78909C">
+    summarize (要約・提案)
+  </text>
+
+  <!-- DynamoDB -->
+  <rect x="928" y="328" width="148" height="48" rx="6" fill="white" stroke="#1565C0" stroke-width="1.5"/>
+  <text x="1002" y="348" text-anchor="middle"
+        font-family="'Segoe UI',Arial,sans-serif" font-size="11" font-weight="bold" fill="#1565C0">
+    DynamoDB
+  </text>
+  <text x="1002" y="365" text-anchor="middle"
+        font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#78909C">
+    接続・transcript保存
+  </text>
+
+  <!-- Bedrock (correction) -->
+  <rect x="928" y="178" width="148" height="48" rx="6" fill="white" stroke="#2E7D32" stroke-width="1.5"/>
+  <text x="1002" y="198" text-anchor="middle"
+        font-family="'Segoe UI',Arial,sans-serif" font-size="11" font-weight="bold" fill="#2E7D32">
+    Amazon Bedrock
+  </text>
+  <text x="1002" y="215" text-anchor="middle"
+        font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#78909C">
+    Claude Haiku (補正)
+  </text>
+
+  <!-- Bedrock (summary) -->
+  <rect x="928" y="568" width="148" height="48" rx="6" fill="white" stroke="#2E7D32" stroke-width="1.5"/>
+  <text x="1002" y="588" text-anchor="middle"
+        font-family="'Segoe UI',Arial,sans-serif" font-size="11" font-weight="bold" fill="#2E7D32">
+    Amazon Bedrock
+  </text>
+  <text x="1002" y="605" text-anchor="middle"
+        font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#78909C">
+    Claude Haiku (要約・提案)
+  </text>
+
+  <!-- ===== ARROWS ===== -->
+
+  <!-- 1. User → CloudFront (HTTPS) -->
+  <path d="M142,336 C170,270 196,210 214,114" stroke="#1976D2" stroke-width="1.5" fill="none" marker-end="url(#arrBlue)"/>
+  <text font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#1976D2">
+    <textPath href="#path-user-cf" startOffset="40%">HTTPS</textPath>
+  </text>
+  <!-- HTTPS label (manual position) -->
+  <text x="158" y="252" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#1976D2" transform="rotate(-60,158,252)">HTTPS</text>
+
+  <!-- 2. CloudFront → S3 (オリジン) -->
+  <line x1="280" y1="138" x2="280" y2="182" stroke="#1976D2" stroke-width="1.5" marker-end="url(#arrBlue)"/>
+  <text x="286" y="163" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#1976D2">オリジン</text>
+
+  <!-- 3. User → Cognito UP (ログイン) -->
+  <path d="M142,352 C170,390 196,420 214,440" stroke="#388E3C" stroke-width="1.5" fill="none" marker-end="url(#arrGreen)"/>
+  <text x="148" y="402" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#388E3C">ログイン</text>
+
+  <!-- 4. User → Cognito IP (IDトークン) -->
+  <path d="M142,362 C168,440 196,500 214,528" stroke="#388E3C" stroke-width="1.5" fill="none" marker-end="url(#arrGreen)"/>
+  <text x="142" y="468" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#388E3C">IDトークン</text>
+
+  <!-- 5. Cognito IP → Transcribe (STS認証情報, dashed) -->
+  <path d="M346,516 C400,400 430,280 452,130" stroke="#6A1B9A" stroke-width="1.2" fill="none" stroke-dasharray="5,3" marker-end="url(#arrPurple)"/>
+  <text x="398" y="338" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#6A1B9A" transform="rotate(-68,398,338)">STS認証情報</text>
+
+  <!-- 6. User → Transcribe (PCM音声 SigV4 WS) -->
+  <path d="M142,330 C250,230 370,170 452,106" stroke="#6A1B9A" stroke-width="1.5" fill="none" marker-end="url(#arrPurple)"/>
+  <text x="270" y="215" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#6A1B9A" transform="rotate(-22,270,215)">PCM音声 (SigV4 WS)</text>
+
+  <!-- 7. User → API GW (WebSocket接続, arc above) -->
+  <path d="M142,324 C240,42 420,42 452,342" stroke="#E65100" stroke-width="1.5" fill="none" marker-end="url(#arrOrange)"/>
+  <text x="296" y="40" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#E65100" text-anchor="middle">WebSocket接続</text>
+
+  <!-- 8. API GW → Lambda WS (invoke) -->
+  <path d="M600,348 C635,320 660,295 688,252" stroke="#F57C00" stroke-width="1.5" fill="none" marker-end="url(#arrOrange)"/>
+  <text x="630" y="300" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#F57C00">invoke</text>
+
+  <!-- 9. Lambda WS → Bedrock correction (補正) -->
+  <line x1="842" y1="248" x2="928" y2="210" stroke="#2E7D32" stroke-width="1.5" marker-end="url(#arrGreen)"/>
+  <text x="873" y="226" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#2E7D32">補正リクエスト</text>
+
+  <!-- 10. Lambda WS → DynamoDB (保存) -->
+  <path d="M842,260 C888,260 900,310 928,342" stroke="#1565C0" stroke-width="1.5" fill="none" marker-end="url(#arrBlue)"/>
+  <text x="896" y="300" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#1565C0">保存</text>
+
+  <!-- 11. Lambda WS → Lambda Sum (非同期invoke, dashed) -->
+  <line x1="765" y1="276" x2="765" y2="468" stroke="#F57C00" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrOrange)"/>
+  <text x="771" y="374" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#F57C00">非同期invoke</text>
+
+  <!-- 12. Lambda Sum → DynamoDB (読取) -->
+  <path d="M842,480 C886,480 900,420 928,368" stroke="#1565C0" stroke-width="1.5" fill="none" marker-end="url(#arrBlue)"/>
+  <text x="896" y="434" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#1565C0">読取</text>
+
+  <!-- 13. Lambda Sum → Bedrock summary (要約・提案) -->
+  <line x1="842" y1="500" x2="928" y2="580" stroke="#2E7D32" stroke-width="1.5" marker-end="url(#arrGreen)"/>
+  <text x="860" y="548" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#2E7D32">要約・提案</text>
+
+  <!-- 14. Lambda WS → API GW push (dashed, 補正テキスト) -->
+  <path d="M688,264 C658,292 628,318 600,344" stroke="#E65100" stroke-width="1.2" fill="none" stroke-dasharray="4,3" marker-end="url(#arrOrange)"/>
+  <text x="628" y="318" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#E65100" text-anchor="end">補正テキスト push</text>
+
+  <!-- 15. Lambda Sum → API GW push (dashed, サマリ) -->
+  <path d="M688,484 C640,460 590,420 600,372" stroke="#E65100" stroke-width="1.2" fill="none" stroke-dasharray="4,3" marker-end="url(#arrOrange)"/>
+  <text x="624" y="454" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#E65100" text-anchor="end">サマリ・提案 push</text>
+
+  <!-- 16. API GW → User push (dashed, 結果返送) -->
+  <path d="M452,336 C380,316 260,316 142,336" stroke="#E65100" stroke-width="1.2" fill="none" stroke-dasharray="4,3" marker-end="url(#arrOrange)"/>
+  <text x="296" y="310" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#E65100" text-anchor="middle">結果返送 (WebSocket push)</text>
+
+  <!-- ===== LEGEND ===== -->
+  <rect x="18" y="600" width="430" height="48" rx="6" fill="white" stroke="#ccc" stroke-width="1"/>
+  <text x="28" y="618" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#555" font-weight="bold">凡例:</text>
+  <!-- solid line -->
+  <line x1="65" y1="614" x2="100" y2="614" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="105" y="618" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#555">リクエスト</text>
+  <!-- dashed line -->
+  <line x1="175" y1="614" x2="210" y2="614" stroke="#555" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr)"/>
+  <text x="215" y="618" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#555">非同期 / レスポンス</text>
+  <!-- colors -->
+  <text x="28" y="638" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#1976D2">■</text>
+  <text x="40" y="638" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#555">フロントエンド</text>
+  <text x="108" y="638" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#388E3C">■</text>
+  <text x="120" y="638" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#555">認証</text>
+  <text x="155" y="638" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#6A1B9A">■</text>
+  <text x="167" y="638" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#555">音声認識</text>
+  <text x="222" y="638" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#E65100">■</text>
+  <text x="234" y="638" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#555">API / Lambda</text>
+  <text x="315" y="638" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#2E7D32">■</text>
+  <text x="327" y="638" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#555">Bedrock</text>
+  <text x="375" y="638" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#1565C0">■</text>
+  <text x="387" y="638" font-family="'Segoe UI',Arial,sans-serif" font-size="9" fill="#555">DynamoDB</text>
+</svg>
